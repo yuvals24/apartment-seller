@@ -13,8 +13,19 @@ $("button").on("click", function () {
 
 const renderApts = function (apartments) {
     $("#results").empty()
-    console.log(apartments) //array of apartments to render
-    //Your code goes here.
+    if (apartments.length === 0)
+    {
+        $('#results').append(`<div class="no-match">fuck you</div>`)
+    }
+    else
+    {
+        let source = $('#houses-template').html()
+        let template = Handlebars.compile(source)
+        let newHtml = template({ apartments })
+        $('#results').append(newHtml)
+    }
 }
 
 renderApts(apartments) //renders apartments when page loads
+
+
